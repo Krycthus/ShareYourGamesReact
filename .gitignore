@@ -1,4 +1,4 @@
-#node_modules
+node_modules
 dist/ModuleIntegration-*
 dist/node_modules
 dist/index.html
