@@ -1,5 +1,9 @@
 .margin-left-30 {
-    margin-left: 30px;
+    margin-left: 30px !important;
+}
+
+.margin-right-30 {
+    margin-right: 30px !important;
 }
 
 .text-white {
@@ -7,14 +11,18 @@
 }
 
 .images_petit {
-    width:200px;
-    height:200px;
+    width:300px;
+    height:300px;
 }
 
 .height-button {
-    height: 500px !important;
+    height: 600px !important;
 }
 
-margin-top-game {
+.margin-top-game {
     margin-top: 100px;
+}
+
+.test{
+    display: block;
 }
