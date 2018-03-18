@@ -1,7 +1,20 @@
 .margin-left-30 {
-    margin-left: 30px
+    margin-left: 30px;
 }
 
 .text-white {
-    color: #ffffff
+    color: #ffffff;
+}
+
+.images_petit {
+    width:200px;
+    height:200px;
+}
+
+.height-button {
+    height: 500px !important;
+}
+
+margin-top-game {
+    margin-top: 100px;
 }

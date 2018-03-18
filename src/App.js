@@ -39,30 +39,34 @@ class App extends Component {
 
     /* TEST Fetch*/
     const json = [
-      { value: '0', title: 'First Panel', label: 'This is your first panel' },
-      { value: '1', title: 'Second Panel', label: 'This is your second panel' },
-      { value: '2', title: 'Third Panel', label: 'This is your third panel' },
-      { value: '3', title: 'Fourth Panel', label: 'This is your fourth panel' }
+      { value: '0', title: 'Firstprout Game', label: 'This is your first Game' },
+      { value: '1', title: 'Second Game', label: 'This is your second Game' },
+      { value: '2', title: 'Third Game', label: 'This is your third Game' },
+      { value: '3', title: 'Fourth Game', label: 'This is your fourth Game' }
     ]
     this.setState({ data1: json })
-    console.log(json)
-  }
-
-  electGame(props) {
-    console.log(this.state.data1)
-    const numbers = props.numbers
-    const element = numbers.map((o) =>
-      <div href={o.value} className='carousel-item blue-grey darken-4 light-green-text-text'>
-        <h2>{o.title}</h2>
-        <p className='white-text'>{o.label}</p>
-      </div>
-    )
-    return {element}
   }
 
   render() {
-    console.log(this.state.data1)
-
+    const games = this.state.data1
+    console.log(games)
+    const gameList = games.map(o => {
+      return (
+        <div className='carousel-item blue-grey darken-4 light-green-text accent-3'>
+          <div className="card-content">
+            <div className='row'>
+              <div className='col s3 offset-s3'>
+                <img src='https://avatars0.githubusercontent.com/u/22610971?s=460&v=4' className='images_petit'/>
+              </div>
+              <div className='col s3'>
+                <h2>{o.title}</h2>
+                <p className='white-text'>{o.label}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      )
+    })
 
     return (
       <div>
@@ -84,49 +88,56 @@ class App extends Component {
 
 
 
-        <div className='carousel carousel-slider center' data-indicators='true'>
+        <div className='carousel carousel-slider center height-button' data-indicators='true'>
           <div className='carousel-fixed-item center'>
-            <a className='btn waves-light blue-grey text-white'>button</a>
+            <a className="waves-effect waves-light btn blue-grey">PLAY</a>
           </div>
-          <selectGame numbers={this.state.data1}/>
+          {gameList}
         </div>
 
 
 
 
         <div className='carousel carousel-slider center' data-indicators='true'>
-          <div className='carousel-fixed-item center'>
-            <a className='btn waves-light blue-grey text-white'>button</a>
-          </div>
-          <div className='carousel-item blue-grey darken-4 light-green-text accent-3'>
-            <h2>First Panel</h2>
-            <p className='white-text'>This is your first panel</p>
-          </div>
-          <div className='carousel-item blue-grey darken-4 light-green-text-text'>
-            <h2>Second Panel</h2>
-            <p className='white-text'>This is your second panel</p>
-          </div>
-          <div className='carousel-item blue-grey darken-4 light-green-text-text'>
-            <h2>Third Panel</h2>
-            <p className='white-text'>This is your third panel</p>
-          </div>
-          <div className='carousel-item blue-grey darken-4 light-green-text-text'>
-            <h2>Fourth Panel</h2>
-            <p className='white-text'>This is your fourth panel</p>
-          </div>
+          <ul className='collapsible popout' data-collapsible='expandable'>
+            <li>
+              <div className='collapsible-header'><i className='material-icons'>filter_drama</i>First</div>
+              <div className='collapsible-body'><span>Lorem ipsum dolor sit amet.</span></div>
+            </li>
+            <li>
+              <div className='collapsible-header'><i className='material-icons'>place</i>Second</div>
+              <div className='collapsible-body'><span>Lorem ipsum dolor sit amet.</span></div>
+            </li>
+            <li>
+              <div className='collapsible-header'><i className='material-icons'>whatshot</i>Third</div>
+              <div className='collapsible-body'><span>Lorem ipsum dolor sit amet.</span></div>
+            </li>
+          </ul>
         </div>
+
+
+
+
+
+        
+
+
+
+
         <div className='col s12 m7'>
           <h2 className='header'>Horizontal Card</h2>
           <div className='card horizontal'>
-            <div className='card-image'>
-              <img src='https://avatars0.githubusercontent.com/u/22610971?s=460&v=4' className='img-responsive'/>
-            </div>
-            <div className='card-stacked'>
-              <div className='card-content'>
-                <p>I am a very simple card. I am good at containing small bits of information.</p>
+            <div className="card horizontal">
+              <div className="card-image">
+                <img src='https://avatars0.githubusercontent.com/u/22610971?s=460&v=4' className='img-responsive images_petit'/>
               </div>
-              <div className='card-action'>
-                <a href='#'>This is a link</a>
+              <div className="card-stacked">
+                <div className="card-content">
+                  <h2>First Game</h2>
+                </div>
+                <div className="card-content">
+                  <p className='white-text'>This is your first Game</p>
+                </div>
               </div>
             </div>
           </div>
