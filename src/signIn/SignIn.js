@@ -11,20 +11,20 @@ class SignIn extends Component {
                         <form className='col s12'>
                             <div className='row'>
                                 <div className='input-field label col s6'>
-                                    <input id='username1' type='text' className='validate'/>
-                                    <label for='username'>Username</label>
+                                    <input id='username_signIn' type='text' className='validate'/>
+                                    <label htmlFor='username_signIn'>Username</label>
                                 </div>
                             </div>
                             <div className='row'>
                                 <div className='input-field label col s6'>
-                                    <input id='password1' type='password' className='validate'/>
-                                    <label for='password'>Password</label>
+                                    <input id='password_signIn' type='password' className='validate'/>
+                                    <label htmlFor='password_signIn'>Password</label>
                                 </div>
                             </div>
                             <div className='row'>
                                 <div className='input-field col s12'>
-                                    <input id='email' type='email' className='validate'/>
-                                    <label for='email'>Email</label>
+                                    <input id='email_signIn' type='email' className='validate'/>
+                                    <label htmlFor='email_signIn'>Email</label>
                                 </div>
                             </div>
                         </form>

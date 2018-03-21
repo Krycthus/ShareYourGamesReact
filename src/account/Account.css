@@ -1,0 +1,28 @@
+.margin-left-50 {
+    margin-left: 50px;
+}
+
+.margin-right-50 {
+    margin-right: 50px;
+}
+
+.margin-left-150 {
+    margin-left: 150px;
+}
+
+.margin-right-150 {
+    margin-right: 150px;
+}
+
+.margin-top-50 {
+    margin-top: 50px;
+}
+
+.margin-top-100 {
+    margin-top: 100px;
+}
+
+.margin-right-absolute-50 {
+    position: absolute;
+    right: 300px
+}

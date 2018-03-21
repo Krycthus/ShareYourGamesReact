@@ -1,5 +1,10 @@
 import React, { Component } from 'react'
 import './Login.css'
+//import { withRouter } from "react-router-dom"
+import {
+    withRouter,
+    Link
+  } from 'react-router-dom'
 
 class Login extends Component {
 
@@ -24,7 +29,7 @@ class Login extends Component {
             if (res.status === 200) {
                 return res.json()
             } 
-            alert('ERREUr')
+            alert('ERREUR')
             throw new Error(res.status)
         })
         .then(json => {
@@ -37,8 +42,10 @@ class Login extends Component {
                 token: 'eyJleHAiOjE1MjExNDUxNDY3NDUsImxvZ2luIjoiamJvaXNkcm9uIiwiY29ubmVjdGlvbiI6IjIwMTgtMDMtMTUgMDk6MTk6MDYiLCJsaWNlbnNlIjpbIlNJRyIsIlNJQURNIiwiU0lQIiwiU0lFUyIsIlNJSCIsIlNJUSJdfQ'
             }
             localStorage.setItem('TOKEN', json.token)
+            //this.context.history.push('/account')
+
         }
-        else {alert('Erreur')}
+        else {alert('Error Username or Password')}
     }
 
     onChange(k, e) {
@@ -55,20 +62,20 @@ class Login extends Component {
                         <form className='col s12'>
                             <div className='row'>
                                 <div className='input-field label col s6'>
-                                    <input id='username' type='text' className='validate' value={this.state.username} onChange={(e) => this.onChange('username', e)}/>
-                                    <label for='username'>Username</label>
+                                    <input id='username_login' type='text' className='validate' value={this.state.username} onChange={(e) => this.onChange('username', e)}/>
+                                    <label htmlFor='username_login'>Username</label>
                                 </div>
                             </div>
                             <div className='row'>
                                 <div className='input-field label col s6'>
-                                    <input id='password' type='password' className='validate' value={this.state.password} onChange={(e) => this.onChange('password', e)}/>
-                                    <label for='password'>Password</label>
+                                    <input id='password_login' type='password' className='validate' value={this.state.password} onChange={(e) => this.onChange('password', e)}/>
+                                    <label htmlFor='password_login'>Password</label>
                                 </div>
                             </div>
                         </form>
                     </div>
                     <div className='modal-footer nav-wrapper'>
-                        <a href='#!' className='modal-action modal-close waves-effect waves-green btn' onClick={this.connectToken}>Connexion</a>
+                        <a href='#!' className='modal-action modal-close waves-effect waves-green btn' onClick={this.connectToken}><Link to="/account">Connexion</Link></a>
                     </div>
                 </div>
             </div>
@@ -76,4 +83,4 @@ class Login extends Component {
     }
 }
 
-export default Login
+export default withRouter(Login)
