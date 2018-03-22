@@ -9,13 +9,13 @@ class App extends Component {
     constructor(props){
         super(props)
         this.state = {
-            data1: []
+            dataGame: []
         }
-        this.fetchData1 = this.fetchData1.bind(this)
+        this.fetchDataGame = this.fetchDataGame.bind(this)
     }
 
     componentWillMount() {
-        this.fetchData1()
+        this.fetchDataGame()
     }
 
     componentDidMount() {
@@ -23,40 +23,40 @@ class App extends Component {
         $('.modal').modal()
     }
 
-    fetchData1() {
-        /*fetch('myroute', {
+    fetchDataGame() {
+        /*fetch('http://localhost/api/game', {
             method: 'GET'
         })
         .then(res => res.json())
         .then(json => {
-            this.setState({ data1: json })
+            this.setState({ dataGame: json })
         })*/
 
         /* TEST Fetch*/
         const json = [
-            { value: '0', title: 'First Game', label: 'This is your first Game' },      //value => ID_GAMES
-            { value: '1', title: 'Second Game', label: 'This is your second Game' },    //title => NAME_GAME
-            { value: '2', title: 'Third Game', label: 'This is your third Game' },      //label => DESCRIPTION_GAMES
-            { value: '3', title: 'Fourth Game', label: 'This is your fourth Game' }
+            { ID_GAMES: '0', NAME_GAME: 'First Game', DESCRIPTION_GAMES: 'This is your first Game' },
+            { ID_GAMES: '1', NAME_GAME: 'Second Game', DESCRIPTION_GAMES: 'This is your second Game' },
+            { ID_GAMES: '2', NAME_GAME: 'Third Game', DESCRIPTION_GAMES: 'This is your third Game' },
+            { ID_GAMES: '3', NAME_GAME: 'Fourth Game', DESCRIPTION_GAMES: 'This is your fourth Game' }
         ]
-        this.setState({ data1: json })
+        this.setState({ dataGame: json })
     }
 
     render() {
         console.log(this.props)
-        const games = this.state.data1
+        const games = this.state.dataGame
         console.log(games)
         const gameList = games.map(o => {
             return (
-                <div key={o.value} className='carousel-item blue-grey darken-4 light-green-text accent-3'>
+                <div key={o.ID_GAMES} className='carousel-item blue-grey darken-4 light-green-text accent-3'>
                     <div className='card-content'>
                         <div className='row margin-top-100'>
                             <div className='col s3 offset-s3'>
                                 <img src='https://avatars0.githubusercontent.com/u/22610971?s=460&v=4' className='images_petit'/>
                             </div>
                             <div className='col s3'>
-                                <h2>{o.title}</h2>
-                                <p className='white-text'>{o.label}</p>
+                                <h2>{o.NAME_GAME}</h2>
+                                <p className='white-text'>{o.DESCRIPTION_GAMES}</p>
                             </div>
                         </div>
                     </div>
@@ -67,8 +67,8 @@ class App extends Component {
         const gameListAccount = games.map(o => {
             return (
                 <li>
-                    <div className='collapsible-header card-panel teal lighten-2'><i className='material-icons'>play_circle_outline</i>{o.title}</div>
-                    <div className='collapsible-body'><span>{o.label}</span></div>
+                    <div className='collapsible-header card-panel teal lighten-2'><i className='material-icons'>play_circle_outline</i>{o.NAME_GAME}</div>
+                    <div className='collapsible-body'><span>{o.DESCRIPTION_GAMES}</span></div>
                 </li>
             )
         })

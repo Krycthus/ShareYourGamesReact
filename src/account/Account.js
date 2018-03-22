@@ -27,10 +27,10 @@ class Account extends Component {
 
         /* TEST Fetch*/
         const json = [
-            { value: '0', title: 'Firstprout Game', label: 'This is your first Game' },
-            { value: '1', title: 'Second Game', label: 'This is your second Game' },
-            { value: '2', title: 'Third Game', label: 'This is your third Game' },
-            { value: '3', title: 'Fourth Game', label: 'This is your fourth Game' }
+            { ID_GAMES: '0', NAME_GAME: 'Firstprout Game', DESCRIPTION_GAMES: 'This is your first Game' },
+            { ID_GAMES: '1', NAME_GAME: 'Second Game', DESCRIPTION_GAMES: 'This is your second Game' },
+            { ID_GAMES: '2', NAME_GAME: 'Third Game', DESCRIPTION_GAMES: 'This is your third Game' },
+            { ID_GAMES: '3', NAME_GAME: 'Fourth Game', DESCRIPTION_GAMES: 'This is your fourth Game' }
         ]
         this.setState({ dataAccount: json })
     }
@@ -44,9 +44,9 @@ class Account extends Component {
         const gameAccount = this.state.dataAccount
         const gameListAccount = gameAccount.map(o => {
             return (
-                <li key={o.value}>
-                    <div className='collapsible-header card-panel teal light-green'><i className='material-icons'>play_circle_outline</i>{o.title}</div>
-                    <div className='collapsible-body'><span>{o.label}</span></div>
+                <li key={o.ID_GAMES}>
+                    <div className='collapsible-header card-panel teal light-green'><i className='material-icons'>play_circle_outline</i>{o.NAME_GAME}</div>
+                    <div className='collapsible-body'><span>{o.DESCRIPTION_GAMES}</span></div>
                 </li>
             )
         })
