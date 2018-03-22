@@ -34,9 +34,9 @@ class App extends Component {
 
         /* TEST Fetch*/
         const json = [
-            { value: '0', title: 'First Game', label: 'This is your first Game' },
-            { value: '1', title: 'Second Game', label: 'This is your second Game' },
-            { value: '2', title: 'Third Game', label: 'This is your third Game' },
+            { value: '0', title: 'First Game', label: 'This is your first Game' },      //value => ID_GAMES
+            { value: '1', title: 'Second Game', label: 'This is your second Game' },    //title => NAME_GAME
+            { value: '2', title: 'Third Game', label: 'This is your third Game' },      //label => DESCRIPTION_GAMES
             { value: '3', title: 'Fourth Game', label: 'This is your fourth Game' }
         ]
         this.setState({ data1: json })

@@ -8,7 +8,7 @@ import {
 import App from '../app/App'
 import Account from '../account/Account'
 
-
+/*
 const Home = () => (
     <div>
         <h2>Home</h2>
@@ -20,6 +20,7 @@ const About = () => (
         <h2>About</h2>
     </div>
 )
+*/
 /*
 const Topic = ({ match }) => (
     <div>

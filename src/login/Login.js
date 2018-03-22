@@ -75,10 +75,6 @@ class Login extends Component {
                     </div>
                     <div className='modal-footer nav-wrapper'>
                         <a href='#!' className='modal-action modal-close waves-effect waves-green btn' onClick={this.connectToken}>Connexion</a>
-
-
-                        <Link className="btn btn-pink" role="button" to="/" onClick={this.connectToken} />
-
                     </div>
                 </div>
             </div>

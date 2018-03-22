@@ -9,6 +9,7 @@ class Account extends Component {
           dataAccount: []
         }
         this.fetchDataAccount = this.fetchDataAccount.bind(this)
+        this.logoutAccount = this.logoutAccount.bind(this)
     }
 
     componentWillMount() {
@@ -34,6 +35,11 @@ class Account extends Component {
         this.setState({ dataAccount: json })
     }
 
+    logoutAccount() {
+        this.props.history.push('/')
+        {alert('Deconnected')}
+    }
+
     render() {
         const gameAccount = this.state.dataAccount
         const gameListAccount = gameAccount.map(o => {
@@ -47,6 +53,16 @@ class Account extends Component {
 
         return (
             <div>
+                <div>
+                    <nav>
+                        <div className='nav-wrapper blue-grey'>
+                            <a href='' className='brand-logo margin-left-30'>ShareYourGames</a>
+                            <ul id='nav-mobile' className='right hide-on-med-and-down'>
+                                <a className='waves-light btn-flat modal-trigger text-white blue-grey' href='#Modal_Logout' onClick={this.logoutAccount}>Logout</a>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
                 <div className='margin-left-150 margin-right-150 margin-top-50'>
                     <form action='#'>
                         <h3><u>Import Your Game</u></h3>
