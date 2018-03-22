@@ -2,10 +2,12 @@ import React from 'react'
 import {
     BrowserRouter as Router,
     Route,
-    Link
+    Link,
+    browserHistory
 } from 'react-router-dom'
 import App from '../app/App'
 import Account from '../account/Account'
+
 
 const Home = () => (
     <div>
@@ -62,6 +64,7 @@ const ShareYourGame = () => (
         </div>
     </Router>
 )
+
 
 /*
 

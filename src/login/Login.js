@@ -18,7 +18,7 @@ class Login extends Component {
     }
 
     connectToken() {
-        /*fetch('http://routeàdéfinir', {
+        /*fetch('http://localhost/api/utilisateurs', {
             method: 'POST',
             body: JSON.stringify({
                 username: this.state.username,
@@ -42,8 +42,7 @@ class Login extends Component {
                 token: 'eyJleHAiOjE1MjExNDUxNDY3NDUsImxvZ2luIjoiamJvaXNkcm9uIiwiY29ubmVjdGlvbiI6IjIwMTgtMDMtMTUgMDk6MTk6MDYiLCJsaWNlbnNlIjpbIlNJRyIsIlNJQURNIiwiU0lQIiwiU0lFUyIsIlNJSCIsIlNJUSJdfQ'
             }
             localStorage.setItem('TOKEN', json.token)
-            //this.context.history.push('/account')
-
+            this.props.history.push('/account')
         }
         else {alert('Error Username or Password')}
     }
@@ -75,7 +74,11 @@ class Login extends Component {
                         </form>
                     </div>
                     <div className='modal-footer nav-wrapper'>
-                        <a href='#!' className='modal-action modal-close waves-effect waves-green btn' onClick={this.connectToken}><Link to="/account">Connexion</Link></a>
+                        <a href='#!' className='modal-action modal-close waves-effect waves-green btn' onClick={this.connectToken}>Connexion</a>
+
+
+                        <Link className="btn btn-pink" role="button" to="/" onClick={this.connectToken} />
+
                     </div>
                 </div>
             </div>
