@@ -27,12 +27,11 @@
     margin-top: 1px;
 }
 
-.test{
-    height:100%;
-    margin:0;
-    padding:0;
-}
-
-.text{
-    font-size: 7
+.test {
+    margin-top: 64px !important;
+    margin-bottom: 181.3px !important;
+    position:absolute !important;
+    background: blue !important;
+    width: 100% !important;
+    height: 100% !important;
 }

@@ -37,6 +37,7 @@ class Account extends Component {
 
     logoutAccount() {
         this.props.history.push('/')
+        localStorage.clear()
         {alert('Deconnected')}
     }
 

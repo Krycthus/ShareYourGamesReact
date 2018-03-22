@@ -39,9 +39,13 @@ class Login extends Component {
 
         if (this.state.username === 'jeremy' && this.state.password === 'jeremy') {
             const json = {
-                token: 'eyJleHAiOjE1MjExNDUxNDY3NDUsImxvZ2luIjoiamJvaXNkcm9uIiwiY29ubmVjdGlvbiI6IjIwMTgtMDMtMTUgMDk6MTk6MDYiLCJsaWNlbnNlIjpbIlNJRyIsIlNJQURNIiwiU0lQIiwiU0lFUyIsIlNJSCIsIlNJUSJdfQ'
+                token: 'eyJleHAiOjE1MjExNDUxNDY3NDUsImxvZ2luIjoiamJvaXNkcm9uIiwiY29ubmVjdGlvbiI6IjIwMTgtMDMtMTUgMDk6MTk6MDYiLCJsaWNlbnNlIjpbIlNJRyIsIlNJQURNIiwiU0lQIiwiU0lFUyIsIlNJSCIsIlNJUSJdfQ',
+                user: 'jeremy',
+                password: 'jeremy'
             }
             localStorage.setItem('TOKEN', json.token)
+            localStorage.setItem('USER', json.user)
+            localStorage.setItem('PASSWORD', json.password)  //getItem
             this.props.history.push('/account')
         }
         else {alert('Error Username or Password')}
