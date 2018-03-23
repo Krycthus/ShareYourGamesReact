@@ -18,7 +18,7 @@ class Login extends Component {
     }
 
     connectToken() {
-        /*fetch('http://localhost/api/utilisateurs', {
+        fetch('http://192.168.1.28/api/utilisateur', {
             method: 'POST',
             body: JSON.stringify({
                 username: this.state.username,
@@ -30,13 +30,22 @@ class Login extends Component {
                 return res.json()
             } 
             alert('ERREUR')
-            throw new Error(res.status)
+            //throw new Error(res.status)
+            this.props.history.push('/')
         })
         .then(json => {
-            localStorage.setItem('TOKEN', json.token)
-        })*/
+            if (json) {
+            //localStorage.setItem('TOKEN', json.token)
+            localStorage.setItem('USER', json.MAIL)
+            localStorage.setItem('PASSWORD', json.MDP)  //getItem
+            this.props.history.push('/account')
+            }
+        })
 
 
+
+
+/*
         if (this.state.username === 'jeremy' && this.state.password === 'jeremy') {
             const json = {
                 token: 'eyJleHAiOjE1MjExNDUxNDY3NDUsImxvZ2luIjoiamJvaXNkcm9uIiwiY29ubmVjdGlvbiI6IjIwMTgtMDMtMTUgMDk6MTk6MDYiLCJsaWNlbnNlIjpbIlNJRyIsIlNJQURNIiwiU0lQIiwiU0lFUyIsIlNJSCIsIlNJUSJdfQ',
@@ -44,12 +53,13 @@ class Login extends Component {
                 password: 'jeremy'
             }
             localStorage.setItem('TOKEN', json.token)
-            localStorage.setItem('USER', json.user)
-            localStorage.setItem('PASSWORD', json.password)  //getItem
+            localStorage.setItem('USER', json.MAIL)
+            localStorage.setItem('PASSWORD', json.MDP)  //getItem
             this.props.history.push('/account')
         }
-        else {alert('Error Username or Password')}
+        else {alert('Error Username or Password')}*/
     }
+
 
     onChange(k, e) {
         const test = {}
@@ -64,9 +74,9 @@ class Login extends Component {
                     <div className='row'>
                         <form className='col s12'>
                             <div className='row'>
-                                <div className='input-field label col s6'>
-                                    <input id='username_login' type='text' className='validate' value={this.state.username} onChange={(e) => this.onChange('username', e)}/>
-                                    <label htmlFor='username_login'>Username</label>
+                            <div className='input-field col s12'>
+                                    <input id='email_login' type='email' className='validate'/>
+                                    <label htmlFor='email_login'>Email</label>
                                 </div>
                             </div>
                             <div className='row'>

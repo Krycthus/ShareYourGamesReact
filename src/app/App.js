@@ -45,7 +45,7 @@ class App extends Component {
                     <div className='card-content'>
                         <div className='row margin-top-100'>
                             <div className='col s3 offset-s3'>
-                                <img src='https://avatars0.githubusercontent.com/u/22610971?s=460&v=4' className='images_petit'/>
+                                <img src='https://media.discordapp.net/attachments/407543861448015883/426521541476352001/image.jpg' className='images_petit'/>
                             </div>
                             <div className='col s3'>
                                 <h2>{o.NAME_GAME}</h2>
@@ -71,7 +71,7 @@ console.log(gameList)
         console.log(gameListAccount)
 
         return (
-            <div>
+            <div className='background'>
                 <SignIn/>
                 <Login {...this.props}/> {/* donne tout les props de app à login */}
                 <div>
