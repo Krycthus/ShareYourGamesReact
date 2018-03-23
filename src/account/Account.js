@@ -1,19 +1,44 @@
 import React, { Component } from 'react'
 import './Account.css'
+import { concat } from 'lodash'
 
 class Account extends Component {
 
     constructor(props){
         super(props)
         this.state = {
-          dataAccount: []
+            dataAccount: [],
+            status: '',
+            games: [],
+            name: '',
+            descr: ''
         }
         this.fetchDataAccount = this.fetchDataAccount.bind(this)
         this.logoutAccount = this.logoutAccount.bind(this)
+        this.refreshPage = this.refreshPage.bind(this)
     }
 
     componentWillMount() {
         this.fetchDataAccount()
+    }
+
+    refreshPage() {
+        this.setState(prevState => {
+            prevState.games.push({ 
+                ID_GAMES: prevState.games.length, 
+                NAME_GAME: prevState.name, 
+                DESCRIPTION_GAMES: prevState.descr 
+            })
+            prevState.name = ''
+            prevState.descr = ''
+            return prevState
+        })
+    } 
+
+    onChange(k, e) {
+        const obj = {}
+        obj[k] = e.target.value
+        this.setState(obj)
     }
 
     fetchDataAccount() {
@@ -26,13 +51,19 @@ class Account extends Component {
         })*/
 
         /* TEST Fetch*/
-        const json = [
-            { ID_GAMES: '0', NAME_GAME: 'Firstprout Game', DESCRIPTION_GAMES: 'This is your first Game' },
-            { ID_GAMES: '1', NAME_GAME: 'Second Game', DESCRIPTION_GAMES: 'This is your second Game' },
-            { ID_GAMES: '2', NAME_GAME: 'Third Game', DESCRIPTION_GAMES: 'This is your third Game' },
-            { ID_GAMES: '3', NAME_GAME: 'Fourth Game', DESCRIPTION_GAMES: 'This is your fourth Game' }
-        ]
-        this.setState({ dataAccount: json })
+        const userActive = localStorage.getItem('MAIL')
+        if(userActive === 'pierre@gmail.com') {
+            const json = [
+                { ID_GAMES: '2', NAME_GAME: 'Kingdom come : Deliverance', DESCRIPTION_GAMES: 'Medieval' }
+            ]
+            this.setState({ dataAccount: json })
+        }
+        if(userActive === 'jeremy@gmail.com') {
+            const json = [
+                { ID_GAMES: '0', NAME_GAME: 'Neytau', DESCRIPTION_GAMES: 'Un jeu génial' }
+            ]
+            this.setState({ dataAccount: json })
+        }
     }
 
     logoutAccount() {
@@ -43,7 +74,7 @@ class Account extends Component {
 
     render() {
         const gameAccount = this.state.dataAccount
-        const gameListAccount = gameAccount.map(o => {
+        const gameListAccount = concat(gameAccount, this.state.games).map(o => {
             return (
                 <li key={o.ID_GAMES}>
                     <div className='collapsible-header card-panel teal light-green'><i className='material-icons'>play_circle_outline</i>{o.NAME_GAME}</div>
@@ -70,7 +101,7 @@ class Account extends Component {
                         <div className='row no-margin'>
                             <div className='margin-left-50 margin-right-50'>
                                 <div className='input-field col s6'>
-                                    <input id='game_name' type='text' className='validate'/>
+                                    <input onChange={(e) => this.onChange('name', e)} value={this.state.name} id='game_name' type='text' className='validate'/>
                                     <label htmlFor='game_name'>Game's Name</label>
                                 </div>
                             </div>
@@ -78,7 +109,7 @@ class Account extends Component {
                         <div className='row no-margin'>
                             <div className='margin-left-50 margin-right-50'>
                                 <div className='input-field col s12'>
-                                    <textarea id='description' className='materialize-textarea'></textarea>
+                                    <textarea onChange={(e) => this.onChange('descr', e)} value={this.state.descr} id='description' className='materialize-textarea'></textarea>
                                     <label htmlFor='game_description'>Game's Description</label>
                                 </div>
                             </div>
@@ -109,7 +140,7 @@ class Account extends Component {
                                 </div>
                             </div>
                         </div>
-                        <button className='btn waves-effect waves-light margin-right-absolute-50' type='submit' name='action'>Submit
+                        <button className='btn waves-effect waves-light margin-right-absolute-50' type='submit' name='action' onClick={ this.refreshPage }>Submit
                             <i className='material-icons right'>send</i>
                         </button>
                     </form>
@@ -128,6 +159,3 @@ class Account extends Component {
 }
 
 export default Account
-
-
-

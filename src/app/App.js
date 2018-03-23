@@ -18,14 +18,13 @@ class App extends Component {
     }
 
     componentWillMount() {
-        fetch('http://192.168.1.28/api/game', {
+        fetch('http://web/api/game', {
             method: 'GET'
         })
             .then(res => res.json())
         
             .then(json => {
                 this.setState({ dataGame: json })
-                console.log(json)
             })
     }
 
@@ -35,11 +34,8 @@ class App extends Component {
     }
 
     render() {
-        console.log('et merde')
         const games = this.state.dataGame
-        console.log(games)
         const gameList = games.map(o => {
-            console.log(o.ID_GAMES)
             return (
                 <div key={o.ID_GAMES} className='carousel-item blue-grey darken-4 light-green-text accent-3'>
                     <div className='card-content'>
@@ -52,23 +48,15 @@ class App extends Component {
                                 <p className='white-text'>{o.DESCRIPTION_GAMES}</p>
                             </div>
                         </div>
+                        <div className='row'>
+                            <div className='carousel-fixed-item center'>
+                                <a className='waves-effect waves-light btn pulse light-green btn-large' href='../../games/pong.html'>PLAY</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             )
         })
-
-console.log(gameList)
-
-        const gameListAccount = games.map(o => {
-            return (
-                <li>
-                    <div className='collapsible-header card-panel teal lighten-2'><i className='material-icons'>play_circle_outline</i>{o.NAME_GAME}</div>
-                    <div className='collapsible-body'><span>{o.DESCRIPTION_GAMES}</span></div>
-                </li>
-            )
-        })
-        console.log(gameList)
-        console.log(gameListAccount)
 
         return (
             <div className='background'>
@@ -89,14 +77,26 @@ console.log(gameList)
                 </div>
                 <div >
                     <div className='carousel carousel-slider center height-button' data-indicators='true'>
-                        <div className='carousel-fixed-item center'>
-                            <div className='waves-effect waves-light btn pulse light-green btn-large'>PLAY</div>
-                        </div>
+                        <div className='carousel-fixed-item center'/>
                         {gameList}
                     </div>
                 </div>
-                <div className='white margin-top-1'/>
 
+
+{/*tes------------------------------------------*/}
+{/*
+                <div className='row'>
+                    <div className='carousel-fixed-item center'>
+                        <a className='waves-effect waves-light btn pulse light-green btn-large' href='/games/pong.html' target='_blank'>PLAY</a>
+                    </div>
+                </div>
+
+*/}
+{/*tes------------------------------------------*/}
+
+
+
+                <div className='white margin-top-1'/>
                 <div>
                     <footer className='page-footer blue-grey darken-4'>
                         <div className='row'>

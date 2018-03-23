@@ -1,0 +1,184 @@
+<html>
+    <canvas id="gameCanvas" width="800" height="600"></canvas>
+
+    <script>
+        // canvas variables
+        var canvas;
+        var canvasContext;
+        var canvasXPos = 0;
+        var canvasYPos = 0;
+
+        // ball variables
+        var ballXPos = 200;
+        var ballYPos = 200;
+        var ballSpeedX = 10;
+        var ballSpeedY = 4;
+        var ballRadius = 10;
+        var ballStartRadiant = 0;
+        var ballStopRadiant = Math.PI*2;
+        var ballCounterClockWise = true;
+
+        // player variables
+        var playerXPos = 0;
+        var playerYPos = 250;
+        var playerWidth = 10;
+        var playerHeight = 100;
+
+        // ai variables
+        var aiXPos = 790;
+        var aiYPos = 0;
+        var aiWidth = 10;
+        var aiHeight = 100;
+
+        // score variable
+        var playerScore = 0;
+        var aiScore = 0;
+        const WINNING_CONDITION = 3;
+        var showingWinningScreen = false;
+
+        // mouse events functions
+        function calcultateMousePosition(evt) {
+            var rect = canvas.getBoundingClientRect();
+            var root = document.documentElement;
+            var mouseX = evt.clientX - rect.left - root.scrollLeft;
+            var mouseY = evt.clientY - rect.top - root.scrollTop;
+            return {
+                x:mouseX,
+                y:mouseY
+            }
+        }
+
+        function handleMouseClick(evt){
+            if(showingWinningScreen){
+                playerScore = 0;
+                aiScore = 0;
+                showingWinningScreen = false;
+            }
+        }
+
+        // update function
+        window.onload = function() {
+            canvas = document.getElementById("gameCanvas");
+            canvasContext = canvas.getContext('2d');
+            var framePerSecond = 30;
+            setInterval(function (){
+                moveEverything();
+                drawEverything();
+                computerMovement();
+            }, 1000/framePerSecond);
+
+            canvas.addEventListener('mousedown', handleMouseClick);
+            canvas.addEventListener('mousemove', 
+                function(evt) {
+                    var mousePos = calcultateMousePosition(evt);
+                    playerYPos = mousePos.y - playerHeight/2;
+                })
+        }
+
+        // ai movement
+        function computerMovement() {
+            var aiYPosCenter = aiYPos + (aiHeight/2);
+            if (aiYPosCenter < ballYPos - 35){
+                aiYPos = aiYPos + 6;
+            }
+            else if (aiYPosCenter > ballYPos + 35){
+                aiYPos = aiYPos - 6;
+            }
+        }
+
+        // drawing functions
+        function drawEverything() {
+            if (showingWinningScreen){
+                drawRectangle(canvasXPos, canvasYPos, canvas.width, canvas.height, "black");
+
+                if (playerScore >= WINNING_CONDITION){
+                    drawText("Player Won !!", 377, 300, "white");
+                }
+                else if (aiScore >= WINNING_CONDITION){
+                    drawText("AI Won !!", 385, 300, "white");
+                }
+
+                drawText("- CLICK TO CONTINUE -", 350, 500, "white");
+                return;
+            }
+            drawRectangle(canvasXPos, canvasYPos, canvas.width, canvas.height, "black");
+            drawNet();
+            drawRectangle(playerXPos, playerYPos, playerWidth, playerHeight, "white");
+            drawRectangle(aiXPos, aiYPos, aiWidth, aiHeight, "white");
+            drawCircle(ballXPos, ballYPos, ballRadius, ballStartRadiant, ballStopRadiant, ballCounterClockWise, "white");
+            canvasContext.fillStyle = "white";
+            canvasContext.fillText(playerScore, 200, 100);
+            canvasContext.fillText(aiScore, 600 , 100);
+        }
+
+        function drawNet(){
+            for (var i=0;i<canvas.height;i+=40){
+                drawRectangle (canvas.width/2-1, i, 2, 20, "white");
+            }
+        }
+
+        function drawRectangle(leftX, topY, width, height, drawColor){
+            canvasContext.fillStyle = drawColor;
+            canvasContext.fillRect(leftX,topY,width,height);
+        }
+
+        function drawCircle(centerX, centerY, radius, startRadiant, stopRadiant, counterClockWise, color){
+            canvasContext.fillStyle = color;
+            canvasContext.beginPath();
+            canvasContext.arc(centerX, centerY, radius, startRadiant, stopRadiant, counterClockWise);
+            canvasContext.fill();
+        }
+
+        function drawText(text, xPos, yPos, color){
+            canvasContext.fillStyle = color;
+            canvasContext.fillText(text, xPos , yPos);
+        }
+
+        // gameplay functions
+        function ballReset(){
+            if (aiScore >= WINNING_CONDITION || playerScore >= WINNING_CONDITION){
+                showingWinningScreen = true;
+            }
+            ballSpeedX = -ballSpeedX;
+            ballXPos = canvas.width/2;
+            ballYPos = canvas.height/2;
+        }
+
+        function moveEverything() {
+            if (showingWinningScreen){
+                return;
+            }
+
+            ballXPos = ballXPos + ballSpeedX;
+            ballYPos = ballYPos + ballSpeedY;
+            
+            if (ballXPos + ballRadius * 2 > canvas.width){
+                if (ballYPos > aiYPos && ballYPos < aiYPos + playerHeight){
+                    ballSpeedX = -ballSpeedX;
+                    var deltaY = ballYPos - (aiYPos+aiHeight/2);
+                    ballSpeedY = deltaY * 0.35;
+                }else{
+                    playerScore = playerScore + 1;
+                    ballReset();
+                }
+            }
+            else if (ballXPos - ballRadius * 2 < canvasXPos){
+                if (ballYPos > playerYPos && ballYPos < playerYPos + playerHeight){
+                    ballSpeedX = -ballSpeedX;
+                    var deltaY = ballYPos - (playerYPos+playerHeight/2);
+                    ballSpeedY = deltaY * 0.35;
+                }else{
+                    aiScore = aiScore + 1;
+                    ballReset();
+                }
+            }
+
+            if (ballYPos + ballRadius > canvas.height){
+                ballSpeedY = -ballSpeedY;
+            }else if (ballYPos - ballRadius < canvasYPos){
+                ballSpeedY = -ballSpeedY;
+            }
+
+        }
+    </script>
+</html>

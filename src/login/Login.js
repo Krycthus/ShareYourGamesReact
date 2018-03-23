@@ -11,14 +11,14 @@ class Login extends Component {
     constructor(props) {
         super(props)
         this.state= {
-            username: '',
-            password: ''
+            MAIL: '',
+            MDP: ''
         }
         this.connectToken = this.connectToken.bind(this)
     }
-
+/*
     connectToken() {
-        fetch('http://192.168.1.28/api/utilisateur', {
+        fetch('http://web/api/utilisateur', {
             method: 'POST',
             body: JSON.stringify({
                 username: this.state.username,
@@ -41,25 +41,35 @@ class Login extends Component {
             this.props.history.push('/account')
             }
         })
-
-
-
-
-/*
-        if (this.state.username === 'jeremy' && this.state.password === 'jeremy') {
-            const json = {
-                token: 'eyJleHAiOjE1MjExNDUxNDY3NDUsImxvZ2luIjoiamJvaXNkcm9uIiwiY29ubmVjdGlvbiI6IjIwMTgtMDMtMTUgMDk6MTk6MDYiLCJsaWNlbnNlIjpbIlNJRyIsIlNJQURNIiwiU0lQIiwiU0lFUyIsIlNJSCIsIlNJUSJdfQ',
-                user: 'jeremy',
-                password: 'jeremy'
-            }
-            localStorage.setItem('TOKEN', json.token)
-            localStorage.setItem('USER', json.MAIL)
-            localStorage.setItem('PASSWORD', json.MDP)  //getItem
-            this.props.history.push('/account')
-        }
-        else {alert('Error Username or Password')}*/
     }
-
+*/
+    connectToken() {
+        if (this.state.MAIL == 'jeremy@gmail.com' && this.state.MDP == 'jeremy') {
+            const json1 = {
+                //token: 'eyJleHAiOjE1MjExNDUxNDY3NDUsImxvZ2luIjoiamJvaXNkcm9uIiwiY29ubmVjdGlvbiI6IjIwMTgtMDMtMTUgMDk6MTk6MDYiLCJsaWNlbnNlIjpbIlNJRyIsIlNJQURNIiwiU0lQIiwiU0lFUyIsIlNJSCIsIlNJUSJdfQ',
+                MAIL: 'jeremy@gmail.com',
+                MDP: 'jeremy'
+            }
+            //localStorage.setItem('TOKEN', json.token)
+            localStorage.setItem('MAIL', json1.MAIL)
+            localStorage.setItem('MDP', json1.MDP)  //getItem
+            this.props.history.push('/account/jeremy')
+        }
+        if (this.state.MAIL === 'pierre@gmail.com' && this.state.MDP === 'pierre') {
+            const json = {
+                //token: 'eyJleHAiOjE1MjExNDUxNDY3NDUsImxvZ2luIjoiamJvaXNkcm9uIiwiY29ubmVjdGlvbiI6IjIwMTgtMDMtMTUgMDk6MTk6MDYiLCJsaWNlbnNlIjpbIlNJRyIsIlNJQURNIiwiU0lQIiwiU0lFUyIsIlNJSCIsIlNJUSJdfQ',
+                MAIL: 'pierre@gmail.com',
+                MDP: 'pierre'
+            }
+            //localStorage.setItem('TOKEN', json.token)
+            localStorage.setItem('MAIL', json.MAIL)
+            localStorage.setItem('MDP', json.MDP)  //getItem
+            this.props.history.push('/account/pierre')
+        }
+        if (this.state.MAIL !== 'jeremy@gmail.com' && this.state.MAIL !== 'pierre@gmail.com') {
+            return alert('Error Username or Password')
+        }
+    }
 
     onChange(k, e) {
         const test = {}
@@ -74,14 +84,14 @@ class Login extends Component {
                     <div className='row'>
                         <form className='col s12'>
                             <div className='row'>
-                            <div className='input-field col s12'>
-                                    <input id='email_login' type='email' className='validate'/>
+                                <div className='input-field col s12'>
+                                    <input id='email_login' type='email' className='validate' value={this.state.MAIL} onChange={(e) => this.onChange('MAIL', e)}/>
                                     <label htmlFor='email_login'>Email</label>
                                 </div>
                             </div>
                             <div className='row'>
                                 <div className='input-field label col s6'>
-                                    <input id='password_login' type='password' className='validate' value={this.state.password} onChange={(e) => this.onChange('password', e)}/>
+                                    <input id='password_login' type='password' className='validate' value={this.state.MDP} onChange={(e) => this.onChange('MDP', e)}/>
                                     <label htmlFor='password_login'>Password</label>
                                 </div>
                             </div>
